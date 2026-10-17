@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - Finansial Taktis</title>
+    <link rel="stylesheet" href="css/gaya_global.css">
+</head>
+<body>
+
+    <header class="header-polri">
+        <div class="logo-title">
+            <img src="assets/logo-polri.png" alt="Logo Polri" class="logo">
+            <div class="title-text">
+                <h1>POLISI REPUBLIK INDONESIA</h1>
+                <p>APLIKASI KEUANGAN PRIBADI</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="datetime" id="realtime-clock">--:--:--</div>
+            <div class="date-text" id="realtime-date">-- --- ----</div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div id="alert-heboh-container"></div>
+        
+        <section class="card border-gold">
+            <p class="label-text">TOTAL SALDO</p>
+            <h2 class="saldo-amount">Rp 0</h2>
+            <p class="tabungan-text">• Tabungan: Rp 0</p>
+        </section>
+
+        <nav class="tab-nav">
+            <button class="tab-btn active">DASHBOARD</button>
+            <button class="tab-btn" onclick="window.location.href='rekap_data.html'">REKAP</button>
+            <button class="tab-btn" onclick="window.location.href='riwayat_transaksi.html'">RIWAYAT</button>
+        </nav>
+
+        <section class="card" style="padding: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #232733; margin-bottom: 16px;">
+            <div>
+                <p class="label-text" style="margin-bottom: 2px;">JADWAL GAJIAN</p>
+                <h4 style="font-size: 14px; color: #d4af37;" id="text-tgl-gajian">Setiap Tanggal: 25</h4>
+            </div>
+            <button onclick="bukaModal('modal-gajian')" style="background: none; border: 1px solid #d4af37; color: #d4af37; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 10px; font-weight: bold;">UBAH</button>
+        </section>
+
+        <section class="card">
+            <div class="flex-between">
+                <p class="label-text">BATAS PENGELUARAN HARIAN</p>
+                <span class="badge-aman">AMAN</span>
+            </div>
+            <h3 class="batas-harian">Rp 0</h3>
+            
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 0%;"></div>
+            </div>
+            
+            <div class="flex-between">
+                <p class="info-text">Terpakai hari ini: <span class="text-gold">Rp 0</span></p>
+                <p class="info-text" id="sisa-hari">Menghitung...</p>
+            </div>
+        </section>
+
+        <div class="action-grid">
+            <button class="btn btn-masuk" onclick="bukaModal('modal-masuk')">+ PEMASUKAN</button>
+            <button class="btn btn-nabung" onclick="bukaModal('modal-nabung')">NABUNG</button>
+            <button class="btn btn-keluar" onclick="bukaModal('modal-keluar')">- PENGELUARAN</button>
+        </div>
+
+        <div id="modal-gajian" class="modal-overlay">
+            <div class="modal-content border-gold">
+                <div class="modal-header">
+                    <h3 class="text-gold">ATUR TANGGAL GAJIAN</h3>
+                    <button class="close-btn" onclick="tutupModal('modal-gajian')">✕</button>
+                </div>
+                <div class="form-group">
+                    <label>TANGGAL (1 - 31)</label>
+                    <input type="number" id="input-tgl-gajian" placeholder="Contoh: 25" min="1" max="31" class="input-field text-gold">
+                </div>
+                <button class="btn btn-nabung w-100 mt-10" onclick="simpanTglGajian()">✓ SIMPAN</button>
+            </div>
+        </div>
+
+        <div id="modal-masuk" class="modal-overlay">
+            <div class="modal-content border-green">
+                <div class="modal-header">
+                    <h3 class="text-green">TAMBAH PEMASUKAN</h3>
+                    <button class="close-btn" onclick="tutupModal('modal-masuk')">✕</button>
+                </div>
+                <div class="form-group">
+                    <label>NOMINAL</label>
+                    <input type="number" id="nominal-masuk" placeholder="Rp 0" class="input-field text-green">
+                </div>
+                <div class="form-group">
+                    <label>KETERANGAN</label>
+                    <input type="text" id="ket-masuk" placeholder="Deskripsi transaksi..." class="input-field">
+                </div>
+                <div class="form-group">
+                    <label>KATEGORI</label>
+                    <select id="kat-masuk" class="input-field">
+                        <option>Gaji</option>
+                        <option>Profit Swanvacation (80%)</option>
+                        <option>Bonus</option>
+                        <option>Lainnya</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>TANGGAL</label>
+                    <input type="date" id="tgl-masuk" class="input-field">
+                </div>
+                <button class="btn btn-masuk w-100 mt-10" onclick="simpanPemasukan()">✓ SIMPAN</button>
+            </div>
+        </div>
+
+        <div id="modal-nabung" class="modal-overlay">
+            <div class="modal-content border-gold">
+                <div class="modal-header">
+                    <h3 class="text-gold">CATAT TABUNGAN</h3>
+                    <button class="close-btn" onclick="tutupModal('modal-nabung')">✕</button>
+                </div>
+                <div class="form-group">
+                    <label>NOMINAL</label>
+                    <input type="number" id="nominal-nabung" placeholder="Rp 0" class="input-field text-gold">
+                </div>
+                <div class="form-group">
+                    <label>KETERANGAN</label>
+                    <input type="text" id="ket-nabung" placeholder="Tujuan nabung..." class="input-field">
+                </div>
+                <div class="form-group">
+                    <label>TANGGAL</label>
+                    <input type="date" id="tgl-nabung" class="input-field">
+                </div>
+                <button class="btn btn-nabung w-100 mt-10" onclick="simpanTabungan()">✓ SIMPAN</button>
+            </div>
+        </div>
+
+        <div id="modal-keluar" class="modal-overlay">
+            <div class="modal-content border-red">
+                <div class="modal-header">
+                    <h3 class="text-red">TAMBAH PENGELUARAN</h3>
+                    <button class="close-btn" onclick="tutupModal('modal-keluar')">✕</button>
+                </div>
+                <div class="form-group">
+                    <label>NOMINAL</label>
+                    <input type="number" id="nominal-keluar" placeholder="Rp 0" class="input-field text-red">
+                </div>
+                <div class="form-group">
+                    <label>KETERANGAN</label>
+                    <input type="text" id="ket-keluar" placeholder="Makan, transport, dll..." class="input-field">
+                </div>
+                <div class="form-group">
+                    <label>KATEGORI</label>
+                    <select id="kat-keluar" class="input-field">
+                        <option>Konsumsi</option>
+                        <option>Transportasi</option>
+                        <option>Kebutuhan</option>
+                        <option>Tagihan</option>
+                        <option>Hiburan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>TANGGAL</label>
+                    <input type="date" id="tgl-keluar" class="input-field">
+                </div>
+                <button class="btn btn-keluar w-100 mt-10" onclick="simpanPengeluaran()">✓ SIMPAN</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/logika_waktu.js"></script>
+    <script src="js/logika_beranda.js"></script>
+</body>
+</html>

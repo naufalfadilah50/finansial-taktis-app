@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat - Finansial Taktis</title>
+    <link rel="stylesheet" href="css/gaya_global.css">
+</head>
+<body>
+
+    <header class="header-polri">
+        <div class="logo-title">
+            <img src="assets/logo-polri.png" alt="Logo Polri" class="logo">
+            <div class="title-text">
+                <h1>POLISI REPUBLIK INDONESIA</h1>
+                <p>APLIKASI KEUANGAN PRIBADI</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="datetime" id="realtime-clock">--:--:--</div>
+            <div class="date-text" id="realtime-date">-- --- ----</div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <div id="alert-heboh-container"></div>
+        
+        <section class="card border-gold">
+            <p class="label-text">TOTAL SALDO</p>
+            <h2 class="saldo-amount" id="saldo-riwayat">Rp 0</h2>
+            <p class="tabungan-text" id="tabungan-riwayat">• Tabungan: Rp 0</p>
+        </section>
+
+        <nav class="tab-nav">
+            <button class="tab-btn" onclick="window.location.href='beranda.html'">DASHBOARD</button>
+            <button class="tab-btn" onclick="window.location.href='rekap_data.html'">REKAP</button>
+            <button class="tab-btn active">RIWAYAT</button>
+        </nav>
+
+        <div id="list-riwayat"></div>
+
+    </main>
+
+    <script src="js/logika_waktu.js"></script>
+    <script src="js/logika_riwayat.js"></script>
+</body>
+</html>

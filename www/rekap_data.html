@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekap - Finansial Taktis</title>
+    <link rel="stylesheet" href="css/gaya_global.css">
+</head>
+<body>
+
+    <header class="header-polri">
+        <div class="logo-title">
+            <img src="assets/logo-polri.png" alt="Logo Polri" class="logo">
+            <div class="title-text">
+                <h1>POLISI REPUBLIK INDONESIA</h1>
+                <p>APLIKASI KEUANGAN PRIBADI</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="datetime" id="realtime-clock">--:--:--</div>
+            <div class="date-text" id="realtime-date">-- --- ----</div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <div id="alert-heboh-container"></div>
+        
+        <section class="card border-gold">
+            <p class="label-text">TOTAL SALDO</p>
+            <h2 class="saldo-amount" id="saldo-rekap">Rp 0</h2>
+            <p class="tabungan-text" id="tabungan-rekap">• Tabungan: Rp 0</p>
+        </section>
+
+        <nav class="tab-nav">
+            <button class="tab-btn" onclick="window.location.href='beranda.html'">DASHBOARD</button>
+            <button class="tab-btn active">REKAP</button>
+            <button class="tab-btn" onclick="window.location.href='riwayat_transaksi.html'">RIWAYAT</button>
+        </nav>
+
+        <p class="label-text" style="margin-top: 20px;" id="label-periode-sekarang">REKAP KEUANGAN - PERIODE SAAT INI</p>
+        
+        <div class="rekap-grid">
+            <div class="rekap-card" style="border-left: 2px solid #4caf50;">
+                <p>TOTAL PEMASUKAN</p>
+                <h3 class="text-green" id="total-pemasukan">Rp 0</h3>
+            </div>
+            <div class="rekap-card" style="border-left: 2px solid #f44336;">
+                <p>TOTAL PENGELUARAN</p>
+                <h3 class="text-red" id="total-pengeluaran">Rp 0</h3>
+            </div>
+            <div class="rekap-card" style="border-left: 2px solid #d4af37;">
+                <p>TOTAL TABUNGAN</p>
+                <h3 class="text-gold" id="total-tabungan-rekap">Rp 0</h3>
+            </div>
+            <div class="rekap-card" style="border-left: 2px solid #2196f3;">
+                <p>SALDO BERSIH</p>
+                <h3 style="color: #2196f3;" id="saldo-bersih">Rp 0</h3>
+                <p style="font-size: 9px;">Sisa uang bulan ini</p>
+            </div>
+        </div>
+
+        <p class="label-text" style="margin-top: 30px;">RIWAYAT PERIODE SEBELUMNYA</p>
+        <div id="riwayat-lama-container"></div>
+
+    </main>
+
+    <script src="js/logika_waktu.js"></script>
+    <script src="js/logika_rekap.js"></script>
+</body>
+</html>
